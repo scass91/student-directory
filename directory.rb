@@ -15,12 +15,10 @@ def print(students)
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students whose name starts with #{$letter}"
+  puts "Overall, we have #{names.count} great students whose names are shorter than 12 characters"
 end
 
 def input_students
-  puts "Enter a letter to see students whose name begins with the letter"
-  $letter = gets.chomp
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # create an empty array
@@ -29,7 +27,7 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
-    if name.start_with? $letter
+    if name.length < 12
     # add the student hash to the array
     students << {name: name, cohort: :november}
     end
