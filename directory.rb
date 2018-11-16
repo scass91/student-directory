@@ -9,13 +9,17 @@ def letter_selector
 end
 
 def print(students)
-  students.each_with_index do |student, i|
-    puts "#{i+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  input = true
+  while input
+    students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  end
+  input = false
   end
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students whose names are shorter than 12 characters"
+  puts "Overall, we have #{names.count} great students"
 end
 
 def input_students
@@ -46,3 +50,4 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
+puts students.length
