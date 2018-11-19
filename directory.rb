@@ -4,9 +4,14 @@ def print_header
 end
 
 def print(students)
-  students.each_with_index do |student, i|
-    puts "#{i+1}. #{student[:name]} #{student[:age]} #{student[:location]} (#{student[:cohort]} cohort)"
-  end
+  cohorts = []
+  students.each {|student| cohorts.push(student[:cohort])}
+    cohorts.uniq.each do |cohort|
+      puts "Student cohort: #{cohort}"
+      students.map do |student|
+        puts "#{student[:name].center(50)}" if student[:cohort] == cohort
+      end
+    end
 end
 
 def print_footer(names)
@@ -28,7 +33,7 @@ def input_students
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: cohort, age: :"27 years old,", location: :London}
+    students << {name: name, cohort: cohort.to_sym, age: :"27 years old,", location: :London}
     puts "Now we have #{students.count} students".center(50)
     # get another name from the user
     name = gets.chomp
