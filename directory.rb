@@ -20,13 +20,22 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp
+  puts "Enter a cohort for the student, to finish, just hit return twice"
+  cohort = gets.chomp
+  if cohort == ""
+    cohort = "January"
+  end
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: :november, age: :"27 years old,", location: :London}
+    students << {name: name, cohort: cohort, age: :"27 years old,", location: :London}
     puts "Now we have #{students.count} students".center(50)
     # get another name from the user
     name = gets.chomp
+    cohort = gets.chomp
+    if cohort == ""
+      cohort = "January"
+    end
   end
   # return the array of students
   if students.size > 0
@@ -39,6 +48,3 @@ students = input_students
 print_header
 print(students)
 print_footer(students)
-
-# unsure at present how to center an array
-# I think the list looks better when defined to the left anyway,w ith titles centered
