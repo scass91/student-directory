@@ -24,9 +24,9 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.tr("\r\n", "")
   puts "Enter a cohort for the student, to finish, just hit return twice"
-  cohort = gets.chomp
+  cohort = gets.tr("\r\n", "")
   if cohort == ""
     cohort = "January"
   end
@@ -41,8 +41,8 @@ def input_students
     puts "Now we have #{students.count} students".center(50)
   end
     # get another name from the user
-    name = gets.chomp
-    cohort = gets.chomp
+    name = gets.tr("\r\n", "")
+    cohort = gets.tr("\r\n", "")
     if cohort == ""
       cohort = "January"
     end
