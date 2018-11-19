@@ -34,7 +34,12 @@ def input_students
   while !name.empty? do
     # add the student hash to the array
     students << {name: name, cohort: cohort.to_sym, age: :"27 years old,", location: :London}
+# I feel like this bit is quite messy!
+    if students.count == 1
+      puts puts "Now we have #{students.count} student".center(50)
+    else
     puts "Now we have #{students.count} students".center(50)
+  end
     # get another name from the user
     name = gets.chomp
     cohort = gets.chomp
