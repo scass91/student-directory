@@ -86,23 +86,23 @@ def save_students
   # open the file for writing
   puts "What do you want to save the file as?"
   saved_file = gets.chomp
-  file = File.open(saved_file, "w")
+  file = File.open(saved_file, "w") do |file|
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
-  file.close
+end
 end
 
 def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
+  file = File.open(filename, "r") do |file|
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
     add_students(name, cohort)
   end
-  file.close
+end
 end
 
 def try_load_students
