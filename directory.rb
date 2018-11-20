@@ -4,14 +4,9 @@ def print_header
 end
 
 def print(students)
-  cohorts = []
-  students.each {|student| cohorts.push(student[:cohort])}
-    cohorts.uniq.each do |cohort|
-      puts "Student cohort: #{cohort}"
-      students.map do |student|
-        puts "#{student[:name].center(50)}" if student[:cohort] == cohort
-      end
-    end
+  students.each_with_index do |student, i|
+    puts "#{i+1}. #{student[:name]} #{student[:age]} #{student[:location]} (#{student[:cohort]} cohort)"
+  end
 end
 
 def print_footer(names)
@@ -24,25 +19,24 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.tr("\r\n", "")
+  name = gets.chomp
   puts "Enter a cohort for the student, to finish, just hit return twice"
-  cohort = gets.tr("\r\n", "")
+  cohort = gets.chomp
   if cohort == ""
     cohort = "January"
   end
   # while the name is not empty, repeat this code
   while !name.empty? do
     # add the student hash to the array
-    students << {name: name, cohort: cohort.to_sym, age: :"27 years old,", location: :London}
-# I feel like this bit is quite messy!
+    students << {name: name, cohort: cohort, age: :"27 years old,", location: :London}
     if students.count == 1
-      puts "Now we have #{students.count} student".center(50)
-    else
+       puts puts "Now we have #{students.count} student".center(50)
+     else
     puts "Now we have #{students.count} students".center(50)
-  end
+    end
     # get another name from the user
-    name = gets.tr("\r\n", "")
-    cohort = gets.tr("\r\n", "")
+    name = gets.chomp
+    cohort = gets.chomp
     if cohort == ""
       cohort = "January"
     end
@@ -55,6 +49,10 @@ def input_students
 end
 
 students = input_students
+if students.nil? || students.empty?
+  puts "We currently have no students!"
+else
 print_header
 print(students)
 print_footer(students)
+end
